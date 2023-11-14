@@ -154,16 +154,88 @@ using namespace std;
 //
 //	return 0;
 //}
+//格式化推荐printf
+//#include <stdio.h>
+//int main()
+//{
+//	char name[100] = "Kelly";
+//	int age = 20;
+//
+//	cout << "name：" << name << endl;
+//	cout << "age：" << age << endl;
+//
+//	printf("name：%s\nage：%d\n", name, age);
+//	return 0;
+//}
 
-#include <stdio.h>
-int main()
+//void func(int a = 0)
+//{
+//	cout << a << endl;
+//}
+//int main()
+//{
+//	//func();
+//	func(666);
+//	return 0;
+//}
+
+//void Func(int a = 1, int b = 2, int c = 3)
+//{
+//	cout << a << " " << b << " " << c << endl;
+//}
+//int main()
+//{
+//	Func(4, 5, 6);
+//	Func(4, 5);
+//	Func(4);
+//	Func();
+//	return 0;
+//}
+
+//void Func(int a , int b = 2, int c = 3)
+//{
+//	cout << a << " " << b << " " << c << endl;
+//}
+//int main()
+//{
+//	Func(4, 5, 6);
+//	Func(4, 5);
+//	Func(4);
+//	//Func(); 至少传一个值给a
+//	return 0;
+//}
+
+//struct Stack
+//{
+//	int* a;
+//	int top;
+//	int capacity;
+//};
+//
+//void StackInit(struct Stack* ps, int Capacity = 4)
+//{
+//	ps->a = (int*)malloc(sizeof(int) * Capacity);
+//	if (ps->a == NULL)
+//	{
+//		perror("malloc fail");
+//		exit(-1);
+//	}
+//	ps->top = 0;
+//	ps->capacity = Capacity;
+//}
+//int main()
+//{
+//	Stack st1; // 最多要存100个数
+//	StackInit(&st1, 100);
+//
+//	Stack st2; // 不知道多少数据
+//	StackInit(&st2);
+//
+//	return 0;
+//}
+
+
+void Func(int a = 10)
 {
-	char name[100] = "Kelly";
-	int age = 20;
-
-	cout << "name：" << name << endl;
-	cout << "age：" << age << endl;
-
-	printf("name：%s\nage：%d\n", name, age);
-	return 0;
+	cout << a << endl;
 }
