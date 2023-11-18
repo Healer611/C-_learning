@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 class Stack
@@ -32,7 +32,7 @@ public:
 	//	_capacity = n;
 	//	_size = 0;
 	//}
-	
+
 	void Push(int x)
 	{
 		//....
@@ -53,7 +53,7 @@ public:
 
 	~Stack()
 	{
-		cout << "~Stack()" << endl;		
+		cout << "~Stack()" << endl;
 		free(_a);
 		_a = nullptr;
 		_size = _capacity = 0;
@@ -66,7 +66,7 @@ private:
 };
 //int main()
 //{
-//	//Stack st;//ÎÞ²ÎÓÐÀ¨ºÅ±¨´í£¬ÈÝÒ×Óëº¯ÊýÉùÃ÷»ìÏý
+//	//Stack st;//æ— å‚æœ‰æ‹¬å·æŠ¥é”™ï¼Œå®¹æ˜“ä¸Žå‡½æ•°å£°æ˜Žæ··æ·†
 //	Stack st(4);
 //
 //	st.Push(1);
@@ -79,48 +79,50 @@ private:
 //	return 0;
 //}
 
-class Date
-{
-public:
-	//Date()
-	//{
-	//	_year = 1;
-	//	_month = 1;
-	//	_day = 1;
-	//}
-	//
-	//Date(int year, int month, int day)
-	//{
-	//	_year = year;
-	//	_month = month;
-	//	_day = day;
-	//}
-	//È±Ê¡´úÌæÉÏÊöº¯ÊýÖØÔØ
-	Date(int year = 1, int month = 1, int day = 1)
-	{//²»ÄÜÓëÎÞ²ÎµÄÍ¬Ê±´æÔÚ£¬±àÒëÄÜÍ¨¹ýµ«ÓÐ¾¯¸æ£¬»á²úÉúÆçÒå£¬³ÌÐò²»ÖªµÀµ÷ÓÃÄÄ¸ö¡£
-		_year = year;
-		_month = month;
-		_day = day;
-	}
+//class Date
+//{
+//public:
+//	//Date()
+//	//{
+//	//	_year = 1;
+//	//	_month = 1;
+//	//	_day = 1;
+//	//}
+//	//
+//	//Date(int year, int month, int day)
+//	//{
+//	//	_year = year;
+//	//	_month = month;
+//	//	_day = day;
+//	//}
+//	//ç¼ºçœä»£æ›¿ä¸Šè¿°å‡½æ•°é‡è½½
+//	Date(int year = 1, int month = 1, int day = 1)
+//	{//ä¸èƒ½ä¸Žæ— å‚çš„åŒæ—¶å­˜åœ¨ï¼Œç¼–è¯‘èƒ½é€šè¿‡ä½†æœ‰è­¦å‘Šï¼Œä¼šäº§ç”Ÿæ­§ä¹‰ï¼Œç¨‹åºä¸çŸ¥é“è°ƒç”¨å“ªä¸ªã€‚
+//		_year = year;
+//		_month = month;
+//		_day = day;
+//	}
+//
+//	void Print()
+//	{
+//		cout << _year << "/" << _month << "/" << _day << endl;
+//		cout << _year << "å¹´" << _month << "æœˆ" << _day << "æ—¥" << endl;
+//	}
+//
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
 
-	void Print()
-	{
-		cout << _year << "/" << _month << "/" << _day << endl;
-		cout << _year << "Äê" << _month << "ÔÂ" << _day << "ÈÕ" << endl;
-	}
+//int main()
+//{
+//	Date d1;
+//	Date d2(2023, 2, 3);
+//	d1.Print();
+//	d2.Print();
+//
+//	return 0;
+//}
 
-private:
-	int _year;
-	int _month;
-	int _day;
-};
-
-int main()
-{
-	Date d1;
-	Date d2(2023, 2, 3);
-	d1.Print();
-	d2.Print();
-
-	return 0;
-}
+â€‹

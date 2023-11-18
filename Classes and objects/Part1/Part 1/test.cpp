@@ -78,81 +78,15 @@ using namespace std;
 //实例化
 //对象大小要考虑内存对齐规则
 
-class Date
-{
-public:
-	// 定义
-	void Init(int year, int month, int day)
-	{
-		_year = year;
-		_month = month;
-		_day = day;
-	}
-
-//private:
-	int _year;  // 声明
-	int _month;
-	int _day;
-};
-
-class A2 {
-public:
-	void f2() {}
-};
-
-// 类中什么都没有---空类
-class A3
-{};
-
-int main()
-{
-	// 类对象实例化 -- 开空间
-	// 实例化 -- 用设计图建造一栋栋别墅
-	Date d1;
-	Date d2;
-
-	// 为什么成员变量在对象中，成员函数不在对象中呢？
-	// 每个对象成员变量时不一样的，需要独立存储
-	// 每个对象调用成员函数是一样的，放到共享公共区域(代码段）
-	d1.Init(2023, 2, 2);
-	d1._year++;
-
-	d2.Init(2022, 2, 2);
-	d2._year++;
-
-	cout << sizeof(d1) << endl;
-
-	A2 aa1;
-	A2 aa2;
-	//实例化就能打印地址
-	cout << &aa1 << endl;
-	cout << &aa2 << endl;
-	// 大小是1，这1byte不存储有效数据
-	// 占位，标识对象被实例化定义出来了。
-	cout << sizeof(aa1) << endl;
-
-	return 0;
-}
-// 类 -- 别墅设计图
 //class Date
 //{
 //public:
 //	// 定义
 //	void Init(int year, int month, int day)
 //	{
-//		/*_year = year;
+//		_year = year;
 //		_month = month;
-//		_day = day;*/
-//		cout << this << endl;
-//		this->_year = year;
-//		this->_month = month;
-//		this->_day = day;
-//	}
-//
-//	void func()
-//	{
-//		cout << this << endl;
-//		cout << "func()" << endl;
+//		_day = day;
 //	}
 //
 ////private:
@@ -161,21 +95,88 @@ int main()
 //	int _day;
 //};
 //
-//// 1、this存在哪里？-- 栈，因为他是隐含形参 / vs下面是通过ecx寄存器
-//// 2、空指针问题
+//class A2 {
+//public:
+//	void f2() {}
+//};
+//
+//// 类中什么都没有---空类
+//class A3
+//{};
+//
 //int main()
 //{
+//	// 类对象实例化 -- 开空间
+//	// 实例化 -- 用设计图建造一栋栋别墅
 //	Date d1;
 //	Date d2;
-//	d1.Init(2022, 2, 2);
-//	d2.Init(2023, 2, 2);
 //
-//	// 编译报错  运行崩溃   正常运行
-//	Date* ptr = nullptr;
-//	//ptr->Init(2022, 2, 2); // 运行崩溃
+//	// 为什么成员变量在对象中，成员函数不在对象中呢？
+//	// 每个对象成员变量时不一样的，需要独立存储
+//	// 每个对象调用成员函数是一样的，放到共享公共区域(代码段）
+//	d1.Init(2023, 2, 2);
+//	d1._year++;
 //
-//	ptr->func();           // 正常运行
-//	(*ptr).func();           // 正常运行
+//	d2.Init(2022, 2, 2);
+//	d2._year++;
+//
+//	cout << sizeof(d1) << endl;
+//
+//	A2 aa1;
+//	A2 aa2;
+//	//实例化就能打印地址
+//	cout << &aa1 << endl;
+//	cout << &aa2 << endl;
+//	// 大小是1，这1byte不存储有效数据
+//	// 占位，标识对象被实例化定义出来了。
+//	cout << sizeof(aa1) << endl;
 //
 //	return 0;
 //}
+
+
+class Date
+{
+public:
+	// 定义
+	void Init(int year, int month, int day)
+	{
+		/*_year = year;
+		_month = month;
+		_day = day;*/
+		cout << this << endl;
+		this->_year = year;
+		this->_month = month;
+		this->_day = day;
+	}
+
+	void func()
+	{
+		//cout << this << endl;
+		cout << "func()" << endl;
+	}
+
+//private:
+	int _year;  // 声明
+	int _month;
+	int _day;
+};
+
+// 1、this存在哪里？-- 栈，因为他是隐含形参 / vs下面是通过ecx寄存器
+// 2、空指针问题
+int main()
+{
+	//Date d1;
+	//Date d2;
+	//d1.Init(2022, 2, 2);
+	//d2.Init(2023, 2, 2);
+
+	//// 编译报错  运行崩溃   正常运行
+	Date* ptr = nullptr;
+	ptr->Init(2022, 2, 2); // 运行崩溃
+
+	//ptr->func();           // 正常运行
+	//(*ptr).func();           // 正常运行
+
+	return 0;
+}
