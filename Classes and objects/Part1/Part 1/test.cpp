@@ -135,16 +135,61 @@ using namespace std;
 //}
 
 
+//class Date
+//{
+//public:
+//	// 定义
+//	void Init(int year, int month, int day)
+//	{
+//		/*_year = year;
+//		_month = month;
+//		_day = day;*/
+//		cout << this << endl;
+//		this->_year = year;
+//		this->_month = month;
+//		this->_day = day;
+//	}
+//
+//	void func()
+//	{
+//		//cout << this << endl;
+//		cout << "func()" << endl;
+//	}
+//
+////private:
+//	int _year;  // 声明
+//	int _month;
+//	int _day;
+//};
+//
+//// 1、this存在哪里？-- 栈，因为他是隐含形参 / vs下面是通过ecx寄存器
+//// 2、空指针问题
+//int main()
+//{
+//	//Date d1;
+//	//Date d2;
+//	//d1.Init(2022, 2, 2);
+//	//d2.Init(2023, 2, 2);
+//
+//	//// 编译报错  运行崩溃   正常运行
+//	Date* ptr = nullptr;
+//	ptr->Init(2022, 2, 2); // 运行崩溃
+//
+//	//ptr->func();           // 正常运行
+//	//(*ptr).func();           // 正常运行
+//
+//	return 0;
+//}
+
+
+
 class Date
 {
 public:
-	// 定义
 	void Init(int year, int month, int day)
 	{
-		/*_year = year;
-		_month = month;
-		_day = day;*/
 		cout << this << endl;
+		//可以显式使用this，不能显式定义this
 		this->_year = year;
 		this->_month = month;
 		this->_day = day;
@@ -152,31 +197,21 @@ public:
 
 	void func()
 	{
-		//cout << this << endl;
 		cout << "func()" << endl;
 	}
 
-//private:
-	int _year;  // 声明
+private:
+	int _year;
 	int _month;
 	int _day;
 };
 
-// 1、this存在哪里？-- 栈，因为他是隐含形参 / vs下面是通过ecx寄存器
-// 2、空指针问题
 int main()
 {
-	//Date d1;
-	//Date d2;
-	//d1.Init(2022, 2, 2);
-	//d2.Init(2023, 2, 2);
-
-	//// 编译报错  运行崩溃   正常运行
 	Date* ptr = nullptr;
-	ptr->Init(2022, 2, 2); // 运行崩溃
+	//ptr->func();
 
-	//ptr->func();           // 正常运行
-	//(*ptr).func();           // 正常运行
-
+	//ptr->Init(2022, 2, 2);
+	(*ptr).func();
 	return 0;
 }
