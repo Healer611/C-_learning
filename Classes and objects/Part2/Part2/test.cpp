@@ -1,71 +1,71 @@
 ﻿#include <iostream>
 using namespace std;
 
-class Stack
-{
-public:
-	Stack()
-	{
-		cout << "Stack()" << endl;
-		_a = nullptr;
-		_size = _capacity = 0;
-	}
-
-	Stack(int n)
-	{
-		cout << "Stack()" << endl;
-		_a = (int*)malloc(sizeof(int) * n);
-		if (_a == nullptr)
-		{
-			perror("malloc fail");
-			return;
-		}
-		_capacity = n;
-		_size = 0;
-	}
-	//void Init(int n)
-	//{
-	//	a = (int*)malloc(sizeof(int) * n);
-	//	if (a == nullptr)
-	//	{
-	//		perror("malloc fail");
-	//		return;
-	//	}
-	//	_capacity = n;
-	//	_size = 0;
-	//}
-
-	void Push(int x)
-	{
-		//....
-		_a[_size++] = x;
-	}
-
-	bool Empty()
-	{
-		// ...
-		return _size == 0;
-	}
-
-	int Top()
-	{
-		//...
-		return _a[_size - 1];
-	}
-
-	~Stack()
-	{
-		cout << "~Stack()" << endl;
-		free(_a);
-		_a = nullptr;
-		_size = _capacity = 0;
-	}
-
-private:
-	int* _a;
-	int _size;
-	int _capacity;
-};
+//class Stack
+//{
+//public:
+//	Stack()
+//	{
+//		cout << "Stack()" << endl;
+//		_a = nullptr;
+//		_size = _capacity = 0;
+//	}
+//
+//	Stack(int n)
+//	{
+//		cout << "Stack()" << endl;
+//		_a = (int*)malloc(sizeof(int) * n);
+//		if (_a == nullptr)
+//		{
+//			perror("malloc fail");
+//			return;
+//		}
+//		_capacity = n;
+//		_size = 0;
+//	}
+//	//void Init(int n)
+//	//{
+//	//	a = (int*)malloc(sizeof(int) * n);
+//	//	if (a == nullptr)
+//	//	{
+//	//		perror("malloc fail");
+//	//		return;
+//	//	}
+//	//	_capacity = n;
+//	//	_size = 0;
+//	//}
+//
+//	void Push(int x)
+//	{
+//		//....
+//		_a[_size++] = x;
+//	}
+//
+//	bool Empty()
+//	{
+//		// ...
+//		return _size == 0;
+//	}
+//
+//	int Top()
+//	{
+//		//...
+//		return _a[_size - 1];
+//	}
+//
+//	~Stack()
+//	{
+//		cout << "~Stack()" << endl;
+//		free(_a);
+//		_a = nullptr;
+//		_size = _capacity = 0;
+//	}
+//
+//private:
+//	int* _a;
+//	int _size;
+//	int _capacity;
+//};
 //int main()
 //{
 //	Stack st;
@@ -271,71 +271,71 @@ private:
 //}
 
 
-class Date
-{
-public:
-	Date(int year = 1900, int month = 1, int day = 1)
-	{
-		_year = year;
-		_month = month;
-		_day = day;
-	}
-	void Print()
-	{
-		cout << _year << "/" << _month << "/" << _day << endl;
-	}
-	// 拷贝构造
-	// Date d2(d1);
-	Date(Date& d)
-	{
-		_year = d._year;
-		_month = d._month;
-		_day = d._day;
-	}
-private:
-	int _year;
-	int _month;
-	int _day;
-};
-
-// 传值传参
-// 内置类型，编译器可以直接拷贝
-// 自定义类型的拷贝，需要调用拷贝构造
-void Func1(Date d)
-{
-
-}
-
-// 传引用传参
-void Func2(Date& d)
-{
-
-}
-
-void Func3(Date* d)
-{
-
-}
-int main()
-{
-	Date d1(2023, 2, 3);
-	Date d2(d1);
-	d1.Print();
-	d2.Print();
-	//Date d3 = d1;
-	
-	//Date d4(&d1);
-	//Date d5 = &d1;
-
-	//Func1(d1);
-	
-	
-	//Func2(d1);
-
-	//Func3(&d1);
-
-	return 0;
-}
+//class Date
+//{
+//public:
+//	Date(int year = 1900, int month = 1, int day = 1)
+//	{
+//		_year = year;
+//		_month = month;
+//		_day = day;
+//	}
+//	void Print()
+//	{
+//		cout << _year << "/" << _month << "/" << _day << endl;
+//	}
+//	// 拷贝构造
+//	// Date d2(d1);
+//	Date(Date& d)
+//	{
+//		_year = d._year;
+//		_month = d._month;
+//		_day = d._day;
+//	}
+//private:
+//	int _year;
+//	int _month;
+//	int _day;
+//};
+//
+//// 传值传参
+//// 内置类型，编译器可以直接拷贝
+//// 自定义类型的拷贝，需要调用拷贝构造
+//void Func1(Date d)
+//{
+//
+//}
+//
+//// 传引用传参
+//void Func2(Date& d)
+//{
+//
+//}
+//
+//void Func3(Date* d)
+//{
+//
+//}
+//int main()
+//{
+//	Date d1(2023, 2, 3);
+//	Date d2(d1);
+//	d1.Print();
+//	d2.Print();
+//	//Date d3 = d1;
+//	
+//	//Date d4(&d1);
+//	//Date d5 = &d1;
+//
+//	//Func1(d1);
+//	
+//	
+//	//Func2(d1);
+//
+//	//Func3(&d1);
+//
+//	return 0;
+//}
 //
 //
 //#include <assert.h>
@@ -473,3 +473,31 @@ int main()
 //
 //	return 0;
 //}
+
+class Date
+{
+public:
+/*	Date(int year = 1, int month = 1, int day = 1)
+	{
+		_year = year;
+		_month = month;
+		_day =*/ day;
+	}
+	void Print()
+	{
+		cout << _year << "-" << _month << "-" << _day << endl;
+	}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+
+int main()
+{
+	Date d1(2023, 11, 20);
+	d1.Print();
+	Date d2(d1);
+	d2.Print();
+	return 0;
+}
