@@ -7,17 +7,17 @@ class Date {
 public:
 	Date(int year = 0, int month = 0, int day = 0);
 	void Print();
-	int GetMonthDay(int year, int month);
+	int GetMonthDay(int year, int month) const;
 
-	bool operator==(const Date& d);
-	bool operator!=(const Date& d);
-	bool operator< (const Date& d);
-	bool operator<=(const Date& d);
-	bool operator> (const Date& d);
-	bool operator>=(const Date& d);
+	bool operator==(const Date& d) const;
+	bool operator!=(const Date& d) const;
+	bool operator< (const Date& d) const;
+	bool operator<=(const Date& d) const;
+	bool operator> (const Date& d) const;
+	bool operator>=(const Date& d) const;
 
 	Date& operator+=(int day);
-	Date operator+(int day);
+	Date operator+(int day) const;
 	
 	Date& operator-=(int day);
 
@@ -25,7 +25,7 @@ public:
 	Date operator-(int day);
 
 	// d1 - d2;
-	int operator-(const Date& d);
+	int operator-(const Date& d) const;
 
 	// ++d1
 	Date& operator++();
