@@ -1,6 +1,6 @@
 #include "Date.h"
 
-int Date::GetMonthDay(int year, int month)
+int Date::GetMonthDay(int year, int month) const
 {
 	assert(month > 0 && month < 13);
 	int _month[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -49,7 +49,7 @@ Date& Date::operator+=(int day)
 	}
 	return *this;
 }
-Date Date::operator+(int day)
+Date Date::operator+(int day) const
 {
 	Date tmp(*this);
 	tmp += day;
@@ -134,7 +134,7 @@ Date Date::operator--(int)
 	return tmp;
 }
 
-int Date::operator-(const Date& d)
+int Date::operator-(const Date& d) const
 {
 	Date max = *this;
 	Date min = d;
@@ -159,7 +159,7 @@ void Date::Print()
 	cout << _year << "/" << _month << "/" << _day << endl;
 }
 
-bool Date::operator==(const Date& d)
+bool Date::operator==(const Date& d) const
 {
 	return _year == d._year
 		&& _month == d._month
@@ -167,7 +167,7 @@ bool Date::operator==(const Date& d)
 }
 
 // d1 < d2
-bool Date::operator<(const Date& d)
+bool Date::operator<(const Date& d) const
 {
 	return _year < d._year
 		|| (_year == d._year && _month < d._month)
@@ -175,23 +175,23 @@ bool Date::operator<(const Date& d)
 }
 
 // d1 <= d2
-bool Date::operator<=(const Date& d)
+bool Date::operator<=(const Date& d) const
 {
 	return *this < d || *this == d;
 }
 
 // d1 > d2
-bool Date::operator>(const Date& d)
+bool Date::operator>(const Date& d) const
 {
 	return !(*this <= d);
 }
 
-bool Date::operator>=(const Date& d)
+bool Date::operator>=(const Date& d) const
 {
 	return !(*this < d);
 }
 
-bool Date::operator!=(const Date& d)
+bool Date::operator!=(const Date& d) const
 {
 	return !(*this == d);
 }
