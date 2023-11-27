@@ -417,18 +417,82 @@ using namespace std;
 //int main()
 //{
 //	// 单参数构造函数 C++98
-//	A aa1(1);	//构造函数
-//	A aa2 = 1;	//隐式类型转换
-//	const A& ref = 10;
+//	//A aa1(1);	//构造函数
+//	//A aa2 = 1;	//隐式类型转换
+//	//const A& ref = 10;
 //
-//	int i = 1;
-//	double d = i;//隐式类型转换
+//	//int i = 1;
+//	//double d = i;//隐式类型转换
 //
 //
-//	// 多参数构造函数 C++11
-//	A aa2(1, 1);
+//	//// 多参数构造函数 C++11
+//	//A aa2(1, 1);
+//	A aa2(1);
 //	A aa3 = { 2, 2 };
 //	const A& ref = { 2, 2 };
 //	return 0;
 //}
 
+//[]运算符重载练习
+//class Array
+//{
+//public:
+//	//int& operator[](int i)
+//	//{
+//	//	assert(i < 10);
+//	//	return _a[i];
+//	//}
+//	Array() : _a{1,1,1,1,1,1,1,1,1,1}
+//	{
+//		//for (int i = 0; i < 10; i++)
+//		//{
+//		//	cin >> _a[i];
+//		//}
+//	}
+//	const int& operator[](int i)const
+//	{
+//		assert(i < 10);
+//		return _a[i];
+//	}
+//private:
+//	int _a[10];
+//	int _size;
+//};
+//void Print(const Array& aa)
+//{
+//	for (int i = 0; i < 10; i++)
+//	{
+//		cout << aa[i] << " ";
+//	}
+//}
+//int main()
+//{
+//	Array aa;
+//	Print(aa);
+//	//for (int i = 0; i < 10; i++)
+//	//{
+//	//	cin >> aa[i];
+//	//}
+//	return 0;
+//}
+
+//static
+
+//class A {
+//public:
+//	A(int a = 0) {
+//		count++;
+//	}
+//	A(const A& aa) {
+//		count++;
+//	}
+//private:
+//	static int count;
+//	int _a = 0;
+//};
+//int A::count = 0;
+//int main()
+//{
+//
+//	return 0;
+//}
