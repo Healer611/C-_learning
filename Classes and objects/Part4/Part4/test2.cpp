@@ -253,51 +253,53 @@ using namespace std;
 //}
 
 
-//class A
-//{
-//public:
-//	A(int a = 0)
-//		:_a(a)
-//	{
-//		cout << "A(int a)" << endl;
-//	}
-//
-//	A(const A& aa)
-//		:_a(aa._a)
-//	{
-//		cout << "A(const A& aa)" << endl;
-//	}
-//
-//	A& operator=(const A& aa)
-//	{
-//		cout << "A& operator=(const A& aa)" << endl;
-//
-//		if (this != &aa)
-//		{
-//			_a = aa._a;
-//		}
-//
-//		return *this;
-//	}
-//
-//	~A()
-//	{
-//		cout << "~A()" << endl;
-//	}
-//private:
-//	int _a;
-//};
-//
-//void func1(A aa)
-//{
-//
-//}
-//
-//void func2(const A& aa)
-//{
-//
-//}
-//
+class A
+{
+public:
+	A(int a = 0)
+		:_a(a)
+	{
+		cout << "A(int a)" << endl;
+	}
+
+	A(const A& aa)
+		:_a(aa._a)
+	{
+		cout << "A(const A& aa)" << endl;
+	}
+
+	A& operator=(const A& aa)
+	{
+		cout << "A& operator=(const A& aa)" << endl;
+
+		if (this != &aa)
+		{
+			_a = aa._a;
+		}
+
+		return *this;
+	}
+
+	~A()
+	{
+		cout << "~A()" << endl;
+	}
+private:
+	int _a;
+};
+
+void func1(A aa)
+{
+
+}
+
+void func2(const A& aa)
+{
+
+}
+
+
+
 //int main()
 //{
 //	A aa1 = 1; // 构造+拷贝构造 -》 优化为直接构造
@@ -314,3 +316,31 @@ using namespace std;
 //
 //	return 0;
 //}
+A func3()
+{
+	A aa;
+	return aa;
+}
+A func4()
+{
+	return A();
+}
+
+int main()
+{
+	func3();// 构造+拷贝构造
+	A aa1 = func3();//构造+两个拷贝构造>>>优化为构造+一个拷贝构造
+
+	func4(); // 构造+拷贝构造 -- 优化为构造
+	A aa3 = func4(); // 构造+拷贝构造+拷贝构造  -- 优化为构造
+
+	
+
+	//A aa1 = func3(); // 拷贝构造+拷贝构造  -- 优化为一个拷贝构造
+
+	//cout << "****" << endl;
+	//A aa2;
+	//aa2 = func3();  // 不能优化
+
+	return 0;
+}
