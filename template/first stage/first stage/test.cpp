@@ -13,7 +13,7 @@ using namespace std;
 //	left = right;
 //	right = tmp;
 //}
-// 
+ 
 //泛型编程——模板
 //template<class T>
 //void Swap(T& x, T& y)
@@ -22,6 +22,8 @@ using namespace std;
 //	x = y;
 //	y = tmp;
 //}
+//template<class A,class B>
+//void Fun{}
 //int main()
 //{
 //	int a = 1, b = 2;
@@ -34,25 +36,87 @@ using namespace std;
 //
 //	return 0;
 //}
-template<class t>
-t add(const t& left, const t& right)
+// 
+// 
+//template<class T>
+//T Add(const T& left, const T& right)
+//{
+//	return left + right;
+//}
+
+//int main()
+//{
+//	int a1 = 10, a2 = 20;
+//	double d1 = 10.11, d2 = 20.22;
+//	//Add(a1, a2);
+//	//Add(d1, d2);
+//	//Add(a1, d1);
+//	// 方法一：实参传递给形参，自动推演模板类型
+//	//cout << Add(a1, a2) << endl;
+//	//cout << Add(d1, d2) << endl;
+//	//cout << Add(a1, (int)d1) << endl;
+//	//cout << Add((double)a1, d1) << endl;
+//
+//	//// 方法二：显示实例化，在函数名和参数列表中间加上模板参数
+//	cout << Add<int>(a1, d1) << endl;//隐式类型转换
+//	cout << Add<double>(a1, d1) << endl;
+//
+//	return 0;
+//}
+
+
+//int Add(int left, int right)
+//{
+//	return left + right;
+//}
+//
+//template<class S>
+//S Add(S left,S right)
+//{
+//	return left + right;
+//}
+//
+//int main()
+//{
+//	Add(1, 2); 
+//	Add<int>(1, 2);
+//	return 0;
+//}
+
+
+template<class T>
+class Stack
 {
-	return left + right;
-}
+public:
+	Stack(int capaicty = 4)
+	{
+		_a = new T[capaicty];
+		_top = 0;
+		_capacity = capaicty;
+	}
+
+	~Stack()
+	{
+		delete[] _a;
+		_capacity = _top = 0;
+	}
+
+private:
+	T* _a;
+	size_t _top;
+	size_t _capacity;
+};
 
 int main()
 {
-	int a1 = 10, a2 = 20;
-	double d1 = 10.11, d2 = 20.22;
-	// 方法一：实参传递给形参，自动推演模板类型
-	cout << add(a1, a2) << endl;
-	cout << add(d1, d2) << endl;
-	cout << add(a1, (int)d1) << endl;
-	cout << add((double)a1, d1) << endl;
+	Stack<int> st1; // int
+	Stack<double> st2; // double
 
-	// 方法二：显示实例化，在函数名和参数列表中间加上模板参数
-	cout << add<int>(a1, d1) << endl;//隐式类型转换
-	cout << add<double>(a1, d1) << endl;
+	vector<int> v;
+	for (size_t i = 0; i < v.size(); ++i)
+	{
+		cout << v[i] << " ";
+	}
 
 	return 0;
 }
