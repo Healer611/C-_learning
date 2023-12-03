@@ -84,39 +84,37 @@ using namespace std;
 //}
 
 
-template<class T>
-class Stack
-{
-public:
-	Stack(int capaicty = 4)
-	{
-		_a = new T[capaicty];
-		_top = 0;
-		_capacity = capaicty;
-	}
+//template<class T>
+//class Stack
+//{
+//public:
+//	Stack(int capaicty = 4)
+//	{
+//		_a = new T[capaicty];
+//		_top = 0;
+//		_capacity = capaicty;
+//	}
+//
+//	~Stack()
+//	{
+//		delete[] _a;
+//		_capacity = _top = 0;
+//	}
+//
+//private:
+//	T* _a;
+//	size_t _top;
+//	size_t _capacity;
+//};
+//
+//int main()
+//{
+//	Stack<int> st1; // int
+//	Stack<double> st2; // double
+//
+//	return 0;
+//}
 
-	~Stack()
-	{
-		delete[] _a;
-		_capacity = _top = 0;
-	}
 
-private:
-	T* _a;
-	size_t _top;
-	size_t _capacity;
-};
 
-int main()
-{
-	Stack<int> st1; // int
-	Stack<double> st2; // double
 
-	vector<int> v;
-	for (size_t i = 0; i < v.size(); ++i)
-	{
-		cout << v[i] << " ";
-	}
-
-	return 0;
-}
