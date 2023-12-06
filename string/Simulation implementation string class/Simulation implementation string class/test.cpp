@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+//#pragma warning(disable:4996)
 //int main()
 //{
 //	string s1("hello world I love you");
@@ -59,3 +59,9 @@ using namespace std;
 //
 //	return 0;
 //}
+#include"string.h"
+int main()
+{
+	hbr::test_string1();
+	return 0;
+}

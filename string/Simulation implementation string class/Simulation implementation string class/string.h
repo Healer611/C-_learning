@@ -1,143 +1,10 @@
 #pragma once
-#include<cstring>
-#include<cassert>
-
-#include<iostream>
-using namespace std;
-//namespace hbr {
-//	class string {
-//	public:
-//		//整合到下面
-//		/*string()
-//			:_str(new char[1]), _size(0), _capacity(0)
-//		{
-//			_str[0] = '\0';
-//		}*/
-//		//string(const char* str)
-//		//	:_str(str),_size(strlen(str)),_capacity(strlen(str))
-//		//{}
-//		//string(const char* str = nullptr)  不可以
-//		//string(const char* str = '\0')
-//		//string(const char* str = "\0")
-//		string(const char* str="")//默认\0
-//			:_size(strlen(str))
-//		{
-//			_capacity = _size;
-//			_str = new char[_capacity + 1];
-//			strcpy(_str, str);
-//		}
-//
-//		const char& operator[](size_t pos) const
-//		{
-//			assert(pos < _size);
-//			return _str[pos];
-//		}
-//
-//		char& operator[](size_t pos)
-//		{
-//			assert(pos < _size);
-//			return _str[pos];
-//		}
-//		
-//		string(const string& s)
-//			:_size(s._size),_capacity(s._capacity)
-//		{
-//			_str = new char[s._capacity + 1];
-//			strcpy(_str, s._str);
-//		}
-//
-//		size_t size() const
-//		{
-//			return _size;
-//		}
-//
-//		string& operator=(const string& s)
-//		{
-//			if (this != &s) {
-//				/*delete[] _str;
-//				_str = new char[s._capacity];
-//				strcpy(_str, s._str);
-//				_size = s._capacity;
-//				_capacity = s._capacity;*/
-//
-//				char* tmp = new char[s._capacity + 1];
-//				strcpy(tmp, s._str);
-//				delete[] _str;
-//				_str = tmp;
-//				_size = s._size;
-//				_capacity = s._capacity;
-//			}
-//			return *this;
-//		}
-//
-//		typedef char* iterator;
-//		typedef const char* const_iterator;
-//
-//		iterator begin()
-//		{
-//			return _str;
-//		}
-//
-//		iterator end()
-//		{
-//			return _str + _size;
-//		}
-//
-//		const_iterator begin() const
-//		{
-//			return _str;
-//		}
-//
-//		const_iterator end() const
-//		{
-//			return _str + _size;
-//		}
-//
-//	private:
-//		char* _str;
-//		size_t _size;
-//		size_t _capacity;
-//	};
-//}
-//
-////void test_string1()
-////{
-////	string s1;
-////	string s2("hello world");
-////
-////	cout << s1.c_str() << endl;
-////	cout << s2.c_str() << endl;
-////
-////	s2[0]++;
-////
-////	cout << s1.c_str() << endl;
-////	cout << s2.c_str() << endl;
-////}
-////
-////void test_string2()
-////{
-////	string s1;
-////	string s2("hello world");
-////
-////	string s3(s2);
-////	cout << s2.c_str() << endl;
-////	cout << s3.c_str() << endl;
-////
-////	s2[0]++;
-////	cout << s2.c_str() << endl;
-////	cout << s3.c_str() << endl;
-////
-////	s1 = s3;
-////	cout << s1.c_str() << endl;
-////	cout << s3.c_str() << endl;
-////
-////	s1 = s1;
-////	cout << s1.c_str() << endl;
-////	cout << s3.c_str() << endl;
-////}
+#include<assert.h>
+#include<string.h>
 
 
-namespace bit
+
+namespace hbr
 {
 	class string
 	{
@@ -168,28 +35,28 @@ namespace bit
 		/*	string()
 				:_str(new char[1])
 				, _size(0)
-				, _capaicty(0)
+				, _capacity(0)
 				{
 				_str[0] = '\0';
 				}*/
 
 				//string(const char* str = nullptr)  不可以
-				//string(const char* str = '\0')	 不可以
-				//string(const char* str = "\0")	 可以
+				//string(const char* str = '\0')
+				//string(const char* str = "\0")
 		string(const char* str = "")
 			:_size(strlen(str))
 		{
-			_capaicty = _size == 0 ? 3 : _size;
-			_str = new char[_capaicty + 1];
+			_capacity = _size == 0 ? 3 : _size;
+			_str = new char[_capacity + 1];
 			strcpy(_str, str);
 		}
 
 		// s3(s2)
 		string(const string& s)
 			:_size(s._size)
-			, _capaicty(s._capaicty)
+			, _capacity(s._capacity)
 		{
-			_str = new char[s._capaicty + 1];
+			_str = new char[s._capacity + 1];
 			strcpy(_str, s._str);
 		}
 
@@ -200,18 +67,18 @@ namespace bit
 			if (this != &s)
 			{
 				/*delete[] _str;
-				_str = new char[s._capaicty + 1];
+				_str = new char[s._capacity + 1];
 				strcpy(_str, s._str);
 				_size = s._size;
-				_capaicty = s._capaicty;*/
+				_capacity = s._capacity;*/
 
-				char* tmp = new char[s._capaicty + 1];
+				char* tmp = new char[s._capacity + 1];
 				strcpy(tmp, s._str);
 				delete[] _str;
 				_str = tmp;
 
 				_size = s._size;
-				_capaicty = s._capaicty;
+				_capacity = s._capacity;
 			}
 
 			return *this;
@@ -221,7 +88,7 @@ namespace bit
 		{
 			delete[] _str;
 			_str = nullptr;
-			_size = _capaicty = 0;
+			_size = _capacity = 0;
 		}
 
 		const char* c_str()
@@ -244,6 +111,11 @@ namespace bit
 		size_t size() const
 		{
 			return _size;
+		}
+
+		size_t capacity() const
+		{
+			return _capacity;
 		}
 
 		// 不修改成员变量数据的函数，最好都加上const
@@ -278,42 +150,72 @@ namespace bit
 			return !(*this == s);
 		}
 
-		void resize(size_t n, char ch = '\0');
+		void resize(size_t n, char ch = '\0')
+		{
+			if (n < _size)
+			{
+				// 删除数据--保留前n个
+				_size = n;
+				_str[_size] = '\0';
+			}
+			else if (n > _size)
+			{
+				if (n > _capacity)
+				{
+					reserve(n);
+				}
+
+				size_t i = _size;
+				while (i < n)
+				{
+					_str[i] = ch;
+					++i;
+				}
+
+				_size = n;
+				_str[_size] = '\0';
+			}
+		}
 
 		void reserve(size_t n)
 		{
-			char* tmp = new char[n + 1];
-			strcpy(tmp, _str);
-			delete[] _str;
-			_str = tmp;
+			if (n > _capacity)
+			{
+				char* tmp = new char[n + 1];
+				strcpy(tmp, _str);
+				delete[] _str;
+				_str = tmp;
 
-			_capaicty = n;
+				_capacity = n;
+			}
 		}
 
 		void push_back(char ch)
 		{
-			if (_size + 1 > _capaicty)
-			{
-				reserve(_capaicty * 2);
-			}
+			//if (_size + 1 > _capacity)
+			//{
+			//	reserve(_capacity * 2);
+			//}
 
-			_str[_size] = ch;
-			++_size;
+			//_str[_size] = ch;
+			//++_size;
 
-			_str[_size] = '\0';
+			//_str[_size] = '\0';
+			insert(_size, ch);
 		}
 
 		void append(const char* str)
 		{
-			size_t len = strlen(str);
-			if (_size + len > _capaicty)
-			{
-				reserve(_size + len);
-			}
+			//size_t len = strlen(str);
+			//if (_size+len > _capacity)
+			//{
+			//	reserve(_size + len);
+			//}
 
-			strcpy(_str + _size, str);
-			//strcat(_str, str);
-			_size += len;
+			//strcpy(_str + _size, str);
+			////strcat(_str, str);
+			//_size += len;
+			insert(_size, str);
 		}
 
 		string& operator+=(char ch)
@@ -328,38 +230,136 @@ namespace bit
 			return *this;
 		}
 
-		void insert(size_t pos, char ch)
+		string& insert(size_t pos, char ch)
 		{
 			assert(pos <= _size);
-			if (_size + 1 > _capaicty)
+			if (_size + 1 > _capacity)
 			{
-				reserve(2 * _capaicty);
+				reserve(2 * _capacity);
 			}
 
-			size_t end = _size;
-			while (end >= pos)
+			// 问题代码
+			/*	size_t end = _size;
+				while (end >= pos)
+				{
+				_str[end+1] = _str[end];
+				--end;
+				}*/
+
+			size_t end = _size + 1;
+			while (end > pos)
 			{
-				_str[end + 1] = _str[end];
+				_str[end] = _str[end - 1];
 				--end;
 			}
 
 			_str[pos] = ch;
 			++_size;
+
+			return *this;
 		}
 
-		void insert(size_t pos, const char* str)
+		string& insert(size_t pos, const char* str)
 		{
+			assert(pos <= _size);
+
+			size_t len = strlen(str);
+
+			if (_size + len > _capacity)
+			{
+				reserve(_size + len);
+			}
+
+			// 挪动数据
+			size_t end = _size + len;
+			while (end > pos + len - 1)
+			{
+				_str[end] = _str[end - len];
+				--end;
+			}
+
+			/*size_t end = _size;
+			for (size_t i = 0; i < _size + 1; ++i)
+			{
+				_str[end - len] = _str[end];
+				--end;
+			}*/
+
+			// 拷贝插入
+			strncpy(_str + pos, str, len);
+			_size += len;
+
+			return *this;
 
 		}
 
-		void erase(size_t pos, size_t len = npos)
+		string& erase(size_t pos, size_t len = npos)
 		{
+			assert(pos < _size);
 
+			if (len == npos || pos + len >= _size)
+			{
+				_str[pos] = '\0';
+				_size = pos;
+			}
+			else
+			{
+				strcpy(_str + pos, _str + pos + len);
+				_size -= len;
+			}
+
+			return *this;
+		}
+
+		//swap(s1, s2);
+		//s1.swap(s2);
+		void swap(string& s)
+		{
+			std::swap(_str, s._str);
+			std::swap(_capacity, s._capacity);
+			std::swap(_size, s._size);
+		}
+
+		size_t find(char ch, size_t pos = 0)
+		{
+			assert(pos < _size);
+
+			for (size_t i = pos; i < _size; ++i)
+			{
+				if (_str[i] == ch)
+				{
+					return i;
+				}
+			}
+
+			return npos;
+		}
+
+		size_t find(const char* str, size_t pos = 0)
+		{
+			assert(pos < _size);
+
+			// kmp
+			char* p = strstr(_str + pos, str);
+			if (p == nullptr)
+			{
+				return npos;
+			}
+			else
+			{
+				return p - _str;
+			}
+		}
+
+		void clear()
+		{
+			_str[0] = '\0';
+			_size = 0;
 		}
 
 	private:
 		char* _str;
-		size_t _capaicty;
+		size_t _capacity;
 		size_t _size;
 
 		static const size_t npos;
@@ -374,6 +374,45 @@ namespace bit
 	};
 
 	const size_t string::npos = -1;
+
+	ostream& operator<<(ostream& out, const string& s)
+	{
+		for (auto ch : s)
+		{
+			out << ch;
+		}
+		return out;
+	}
+
+	// 21:13继续
+	istream& operator>>(istream& in, string& s)
+	{
+		s.clear();
+
+		char ch = in.get();
+		char buff[128];
+		size_t i = 0;
+		while (ch != ' ' && ch != '\n')
+		{
+			buff[i++] = ch;
+			if (i == 127)
+			{
+				buff[127] = '\0';
+				s += buff;
+				i = 0;
+			}
+
+			ch = in.get();
+		}
+
+		if (i != 0)
+		{
+			buff[i] = '\0';
+			s += buff;
+		}
+
+		return in;
+	}
 
 	void test_string1()
 	{
@@ -508,5 +547,73 @@ namespace bit
 		s1.insert(0, 'x');
 		cout << s1.c_str() << endl;
 	}
-}
 
+	void test_string6()
+	{
+		string s1("hello world11111111111111111111111");
+		cout << s1.capacity() << endl;
+		s1.reserve(10);
+		cout << s1.capacity() << endl;
+	}
+
+	void test_string7()
+	{
+		string s1;
+		s1.resize(20, 'x');
+		cout << s1.c_str() << endl;
+		s1.resize(30, 'y');
+		cout << s1.c_str() << endl;
+
+		s1.resize(10);
+		cout << s1.c_str() << endl;
+	}
+
+	void test_string8()
+	{
+		string s1("11111111");
+		s1.insert(0, 'x');
+		cout << s1.c_str() << endl;
+
+		s1.insert(3, 'x');
+		cout << s1.c_str() << endl;
+
+		s1.insert(3, "yyy");
+		cout << s1.c_str() << endl;
+
+		s1.insert(0, "yyy");
+		cout << s1.c_str() << endl;
+	}
+
+	void test_string9()
+	{
+		string s1("0123456789");
+		cout << s1.c_str() << endl;
+
+		s1.erase(4, 3);
+		cout << s1.c_str() << endl;
+
+		s1.erase(4, 30);
+		cout << s1.c_str() << endl;
+
+		s1.erase(2);
+		cout << s1.c_str() << endl;
+	}
+
+	// 流插入重载必须实现成友元函数？ 不对
+	void test_string10()
+	{
+		std::string s1("0123456789");
+		s1 += '\0';
+		s1 += "xxxxxxxx";
+
+		cout << s1 << endl;
+		cout << s1.c_str() << endl;
+
+		string s2;
+		cin >> s2;
+		cout << s2 << endl;
+
+		cin >> s1;
+		cout << s1 << endl;
+	}
+}
