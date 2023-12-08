@@ -1,15 +1,15 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 void test1()
 {
-	//ÎŞ²Î¹¹Ôì
+	//æ— å‚æ„é€ 
 	vector<int> v;
 	v.push_back(1);
 	v.push_back(2);
 	v.push_back(3);
 
-	//ÈıÖÖÊä³ö·½Ê½ ·¶Î§for [] µü´úÆ÷
+	//ä¸‰ç§è¾“å‡ºæ–¹å¼ èŒƒå›´for [] è¿­ä»£å™¨
 	for (auto a : v)
 	{
 		cout << a << " ";
@@ -31,7 +31,7 @@ void test1()
 	}
 	cout << endl;
 	
-	//¿½±´¹¹Ôì
+	//æ‹·è´æ„é€ 
 	vector<int> copy(v);
 	for (auto a : copy) 
 	{
@@ -41,7 +41,7 @@ void test1()
 }
 void test2()
 {
-	//¹¹Ôì²¢³õÊ¼»¯
+	//æ„é€ å¹¶åˆå§‹åŒ–
 	vector<int> v1(6, 6);
 	for (auto a : v1)
 	{
@@ -49,7 +49,7 @@ void test2()
 	}
 	cout << endl;
 
-	//µü´úÆ÷
+	//è¿­ä»£å™¨
 	vector<int> v2(v1.begin(), v1.end());
 	for (auto b : v2)
 	{
@@ -90,7 +90,7 @@ void test3()
 void test4()
 {
 	vector<int> v;
-	v.resize(10, 0);//²»ĞèÒªdelete³ö×÷ÓÃÓÚ×Ô¶¯ÊÍ·Å
+	v.resize(10, 0);//ä¸éœ€è¦deleteå‡ºä½œç”¨äºè‡ªåŠ¨é‡Šæ”¾
 
 	vector<int> v2(10, 0);
 
@@ -113,13 +113,13 @@ void TestVectorExpand()
 		}
 	}
 }
-// Èç¹ûÒÑ¾­È·¶¨vectorÖĞÒª´æ´¢ÔªËØ´ó¸Å¸öÊı£¬¿ÉÒÔÌáÇ°½«¿Õ¼äÉèÖÃ×ã¹»
-// ¾Í¿ÉÒÔ±ÜÃâ±ß²åÈë±ßÀ©Èİµ¼ÖÂĞ§ÂÊµÍÏÂµÄÎÊÌâÁË
+// å¦‚æœå·²ç»ç¡®å®švectorä¸­è¦å­˜å‚¨å…ƒç´ å¤§æ¦‚ä¸ªæ•°ï¼Œå¯ä»¥æå‰å°†ç©ºé—´è®¾ç½®è¶³å¤Ÿ
+// å°±å¯ä»¥é¿å…è¾¹æ’å…¥è¾¹æ‰©å®¹å¯¼è‡´æ•ˆç‡ä½ä¸‹çš„é—®é¢˜äº†
 void TestVectorExpandOP()
 {
 	vector<int> v;
 	size_t sz = v.capacity();
-	v.reserve(100); // ÌáÇ°½«ÈİÁ¿ÉèÖÃºÃ£¬¿ÉÒÔ±ÜÃâÒ»±é²åÈëÒ»±éÀ©Èİ
+	v.reserve(100); // æå‰å°†å®¹é‡è®¾ç½®å¥½ï¼Œå¯ä»¥é¿å…ä¸€éæ’å…¥ä¸€éæ‰©å®¹
 	cout << "making bar grow:\n";
 	for (int i = 0; i < 100; ++i)
 	{
@@ -151,46 +151,46 @@ void TestVectorExpandOP()
 void test5()
 {
 	vector<int> v;
-	v.push_back(1); // ÔÚvectorÄ©Î²²åÈëÔªËØ1
-	v.push_back(2); // ÔÚvectorÄ©Î²²åÈëÔªËØ2
-	v.push_back(3); // ÔÚvectorÄ©Î²²åÈëÔªËØ3
-	v.push_back(4); // ÔÚvectorÄ©Î²²åÈëÔªËØ4
+	v.push_back(1); // åœ¨vectoræœ«å°¾æ’å…¥å…ƒç´ 1
+	v.push_back(2); // åœ¨vectoræœ«å°¾æ’å…¥å…ƒç´ 2
+	v.push_back(3); // åœ¨vectoræœ«å°¾æ’å…¥å…ƒç´ 3
+	v.push_back(4); // åœ¨vectoræœ«å°¾æ’å…¥å…ƒç´ 4
 
 	for (auto e : v)
 	{
-		cout << e << " "; // Êä³övectorÖĞµÄÃ¿¸öÔªËØ
+		cout << e << " "; // è¾“å‡ºvectorä¸­çš„æ¯ä¸ªå…ƒç´ 
 	}
 	cout << endl;
 
-	vector<int>::iterator pos = find(v.begin(), v.end(), 2); // ÔÚvectorÖĞ²éÕÒÖµÎª2µÄÔªËØ
+	vector<int>::iterator pos = find(v.begin(), v.end(), 2); // åœ¨vectorä¸­æŸ¥æ‰¾å€¼ä¸º2çš„å…ƒç´ 
 	if (pos != v.end())
 	{
-		v.insert(pos, 20); // ÔÚÕÒµ½µÄÎ»ÖÃÖ®Ç°²åÈëÔªËØ20
+		v.insert(pos, 20); // åœ¨æ‰¾åˆ°çš„ä½ç½®ä¹‹å‰æ’å…¥å…ƒç´ 20
 	}
 
 	for (auto e : v)
 	{
-		cout << e << " "; // Êä³öĞŞ¸ÄºóµÄvectorÖĞµÄÃ¿¸öÔªËØ
+		cout << e << " "; // è¾“å‡ºä¿®æ”¹åçš„vectorä¸­çš„æ¯ä¸ªå…ƒç´ 
 	}
 	cout << endl;
 
-	pos = find(v.begin(), v.end(), 2); // ÔÙ´Î²éÕÒÖµÎª2µÄÔªËØ
+	pos = find(v.begin(), v.end(), 2); // å†æ¬¡æŸ¥æ‰¾å€¼ä¸º2çš„å…ƒç´ 
 	if (pos != v.end())
 	{
-		v.erase(pos); // É¾³ıÕÒµ½µÄÔªËØ
+		v.erase(pos); // åˆ é™¤æ‰¾åˆ°çš„å…ƒç´ 
 	}
 
 	for (auto e : v)
 	{
-		cout << e << " "; // Êä³öĞŞ¸ÄºóµÄvectorÖĞµÄÃ¿¸öÔªËØ
+		cout << e << " "; // è¾“å‡ºä¿®æ”¹åçš„vectorä¸­çš„æ¯ä¸ªå…ƒç´ 
 	}
 	cout << endl;
 
-	v.erase(v.begin()); // É¾³ıvectorµÄµÚÒ»¸öÔªËØ
+	v.erase(v.begin()); // åˆ é™¤vectorçš„ç¬¬ä¸€ä¸ªå…ƒç´ 
 
 	for (auto e : v)
 	{
-		cout << e << " "; // Êä³öĞŞ¸ÄºóµÄvectorÖĞµÄÃ¿¸öÔªËØ
+		cout << e << " "; // è¾“å‡ºä¿®æ”¹åçš„vectorä¸­çš„æ¯ä¸ªå…ƒç´ 
 	}
 	cout << endl;
 }
