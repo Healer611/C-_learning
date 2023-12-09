@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	byte::test3();
+	byte::test5();
 
 	return 0;
 }

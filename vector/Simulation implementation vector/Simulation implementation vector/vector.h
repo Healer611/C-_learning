@@ -52,6 +52,18 @@ namespace byte
 			, _end_of_storage(nullptr)
 		{}
 
+		vector(size_t n, const T& value = T())
+			: _start(nullptr)
+			, _finish(nullptr)
+			, _end_of_storage(nullptr)
+		{
+			reserve(n);
+			while (n--)
+			{
+				push_back(value);
+			}
+		}
+
 		void reserve(size_t n)
 		{
 			if (n > capacity())
@@ -107,6 +119,18 @@ namespace byte
 			++_finish;
 		}
 
+		void erase(iterator pos)
+		{
+			assert(pos >= _start && pos < _finish);
+			iterator start = pos + 1;
+			while (start != _finish)
+			{
+				*(start - 1) = *start;
+				++start;
+			}
+			--_finish;
+		}
+
 		size_t capacity() const
 		{
 			return _end_of_storage - _start;
@@ -138,6 +162,24 @@ namespace byte
 		iterator _end_of_storage;
 	};
 
+
+	void func(const vector<int>& v)
+	{
+		for (size_t i = 0; i < v.size(); ++i)
+		{
+			cout << v[i] << " ";
+		}
+		cout << endl;
+
+		vector<int>::const_iterator it = v.begin();
+		while (it != v.end())
+		{
+			cout << *it << " ";
+			++it;
+		}
+		cout << endl << endl;
+	}
+
 	void test1()
 	{
 		vector<int> v1;
@@ -165,6 +207,29 @@ namespace byte
 		cout << endl;
 	}
 
+	void test2()
+	{
+		vector<int> v1;
+		v1.push_back(1);
+		v1.push_back(2);
+		v1.push_back(3);
+		v1.push_back(4);
+		v1.push_back(5);
+
+		cout << v1.size() << endl;
+		cout << v1.capacity() << endl;
+
+		v1.resize(10);
+
+		cout << v1.size() << endl;
+		cout << v1.capacity() << endl;
+
+		func(v1);
+
+		v1.resize(3);
+
+		func(v1);
+	}
 
 	void test3()
 	{
@@ -180,10 +245,87 @@ namespace byte
 		}
 		cout << endl;
 
-		v1.insert(v1.begin()+2, 0);
+		/*v1.insert(v1.begin(), 0);
 		for (auto e : v1)
 		{
 		cout << e << " ";
+		}
+		cout << endl;*/
+
+		auto pos = find(v1.begin(), v1.end(), 3);
+		if (pos != v1.end())
+		{
+			//v1.insert(pos, 30);
+			pos = v1.insert(pos, 30);
+		}
+
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		// insert以后我们认为pos失效了，不能再使用
+		(*pos)++;
+
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+	}
+
+	void test4()
+	{
+		std::vector<int> v1;
+		v1.push_back(1);
+		v1.push_back(2);
+		v1.push_back(3);
+		v1.push_back(4);
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		//auto pos = find(v1.begin(), v1.end(), 2);
+		auto pos = find(v1.begin(), v1.end(), 4);
+		if (pos != v1.end())
+		{
+			v1.erase(pos);
+		}
+
+		(*pos)++;
+
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+	}
+
+	void test5()
+	{
+		std::vector<int> v1;
+		v1.push_back(1);
+		v1.push_back(2);
+		v1.push_back(3);
+		v1.push_back(4);
+
+		//要求删除所有偶数
+		std::vector<int>::iterator it = v1.begin();
+		while (it != v1.end())
+		{
+			if (*it % 2 == 0)
+			{
+				v1.erase(it);
+			}
+			++it;
+		}
+		for (auto e : v1)
+		{
+			cout << e << " ";
 		}
 		cout << endl;
 	}
