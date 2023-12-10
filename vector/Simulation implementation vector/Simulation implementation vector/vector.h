@@ -64,6 +64,31 @@ namespace byte
 			}
 		}
 
+		vector(int n, const T& val = T())
+		{
+			reserve(n);
+			for (int i = 0; i < n; ++i)
+			{
+				push_back(val);
+			}
+		}
+
+		template<class InputIterator>
+		vector(InputIterator first, InputIterator last)
+		{
+			while (first != last)
+			{
+				push_back(*first);
+				++first;
+			}
+		}
+
+		~vector()
+		{
+			delete[] _start;
+			_start = _finish = _end_of_storage = nullptr;
+		}
+		
 		void reserve(size_t n)
 		{
 			if (n > capacity())
@@ -119,7 +144,7 @@ namespace byte
 			++_finish;
 		}
 
-		void erase(iterator pos)
+		iterator erase(iterator pos)
 		{
 			assert(pos >= _start && pos < _finish);
 			iterator start = pos + 1;
@@ -129,6 +154,8 @@ namespace byte
 				++start;
 			}
 			--_finish;
+
+			return pos;
 		}
 
 		size_t capacity() const
@@ -307,22 +334,72 @@ namespace byte
 
 	void test5()
 	{
-		std::vector<int> v1;
+		byte::vector<int> v1;
 		v1.push_back(1);
 		v1.push_back(2);
 		v1.push_back(3);
 		v1.push_back(4);
 
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
 		//要求删除所有偶数
-		std::vector<int>::iterator it = v1.begin();
+		byte::vector<int>::iterator it = v1.begin();
 		while (it != v1.end())
 		{
 			if (*it % 2 == 0)
 			{
-				v1.erase(it);
+				it=v1.erase(it);
 			}
-			++it;
+			else
+			{
+				++it;
+			}
 		}
+
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+	}
+
+	void test6()
+	{
+		vector<int> v1(10, 5);
+		for (auto e : v1)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		vector<int> v2(v1.begin() + 1, v1.end() - 1);
+		for (auto e : v2)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		std::string s1("hello");
+		vector<int> v3(s1.begin(), s1.end());
+		for (auto e : v3)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		int a[] = { 100, 10, 2, 20, 30 };
+		vector<int> v4(a, a + 3);
+		for (auto e : v4)
+		{
+			cout << e << " ";
+		}
+		cout << endl;
+
+		v1.insert(v1.begin(), 10);
 		for (auto e : v1)
 		{
 			cout << e << " ";

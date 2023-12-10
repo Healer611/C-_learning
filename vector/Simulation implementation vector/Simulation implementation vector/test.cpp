@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-	byte::test5();
+	byte::test6();
 
 	return 0;
 }
