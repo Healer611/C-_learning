@@ -1,5 +1,6 @@
 #pragma once
 #include<assert.h>
+#include<iostream>
 namespace byte
 {
 	template<class T>
@@ -83,12 +84,44 @@ namespace byte
 			}
 		}
 
+		void swap(vector<T>& v)
+		{
+			std::swap(_start, v._start);
+			std::swap(_finish, v._finish);
+			std::swap(_end_of_storage, v._end_of_storage);
+		}
+
+		vector<T>& operator=(vector<T> v)
+		{
+			swap(v);
+			return *this;
+		}
+
+		//vector(const vector<T>& v)
+		//{
+		//	_start = new T[v.capacity()];
+		//	//memcoy(_start, v._start, sizeof(T) * v.size());
+		//	for (size_t i = 0; i < size(); i++)
+		//	{
+		//		_start[i] = v._start[i];
+		//	}
+		//	_finish = _start + v.size();
+		//	_end_of_storage = _start + v.capacity();
+		//}
+
+		vector(const vector<T>& v)
+		{
+			vector<T> tmp(v.begin(), v.end());
+			swap(tmp);
+		}
+
 		~vector()
 		{
 			delete[] _start;
 			_start = _finish = _end_of_storage = nullptr;
 		}
 		
+
 		void reserve(size_t n)
 		{
 			if (n > capacity())
@@ -97,7 +130,11 @@ namespace byte
 				T* tmp = new T[n];
 				if (_start)
 				{
-					memcpy(tmp, _start, sizeof(T) * size());
+					//memcpy(tmp, _start, sizeof(T)*size());
+					for (size_t i = 0; i < sz; ++i)
+					{
+						tmp[i] = _start[i];
+					}
 					delete[] _start;
 				}
 				_start = tmp;
@@ -403,6 +440,47 @@ namespace byte
 		for (auto e : v1)
 		{
 			cout << e << " ";
+		}
+		cout << endl;
+	}
+
+
+	class Solution {
+	public:
+		vector<vector<int>> generate(int numRows) {
+			vector<vector<int>> vv;
+			vv.resize(numRows, vector<int>());
+			for (size_t i = 0; i < vv.size(); ++i)
+			{
+				vv[i].resize(i + 1, 0);
+				vv[i][0] = vv[i][vv[i].size() - 1] = 1;
+			}
+
+			for (size_t i = 0; i < vv.size(); ++i)
+			{
+				for (size_t j = 0; j < vv[i].size(); ++j)
+				{
+					if (vv[i][j] == 0)
+					{
+						vv[i][j] = vv[i - 1][j] + vv[i - 1][j - 1];
+					}
+				}
+			}
+
+			return vv;
+		}
+	};
+
+	void test_vector7()
+	{
+		vector<vector<int>> ret = Solution().generate(5);
+		for (size_t i = 0; i < ret.size(); ++i)
+		{
+			for (size_t j = 0; j < ret[i].size(); ++j)
+			{
+				cout << ret[i][j] << " ";
+			}
+			cout << endl;
 		}
 		cout << endl;
 	}
