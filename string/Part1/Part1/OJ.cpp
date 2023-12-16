@@ -1,3 +1,46 @@
+//把字符串转换成整数
+//https://www.nowcoder.com/practice/1277c681251b4372bdef344468e4f26e?tpId=13
+//class Solution {
+//public:
+//    int StrToInt(string str) {
+//        const int len = str.length();
+//        if (len == 0) return 0;
+//        int i = 0;
+//        while (i < len && str[i] == ' ') {
+//            ++i;    // 排除开头的空格
+//        }
+//        if (i == len) return 0;
+//        if (!isdigit(str[i]) && str[i] != '+' && str[i] != '-') return 0;
+//        bool neg = str[i] == '-' ? true : false;
+//        i = isdigit(str[i]) ? i : i + 1;
+//        long long ans = 0L;
+//
+//        while (i < len && isdigit(str[i])) {
+//            ans = ans * 10 + (str[i++] - '0');
+//
+//            if (!neg && ans > INT_MAX) {
+//                ans = INT_MAX;
+//                break;
+//            }
+//            if (neg && ans > 1L + INT_MAX) {
+//                ans = 1L + INT_MAX;
+//                break;
+//            }
+//        }
+//        if (i != len) return 0; // 不要此处，就是atoi()库函数的实现
+//        return !neg ? static_cast<int>(ans) : static_cast<int>(-ans);
+//    }
+//};
+
+//344. 反转字符串
+//https://leetcode.cn/problems/reverse-string/
+//class Solution {
+//public:
+//    void reverseString(vector<char>& s) {
+//        reverse(s.begin(), s.end());
+//    }
+//};
+
 //917. 仅仅反转字母
 //https://leetcode.cn/problems/reverse-only-letters/description/
 //class Solution {
@@ -35,7 +78,78 @@
 //    }
 //};
 
+//HJ1 字符串最后一个单词的长度
+//https://www.nowcoder.com/practice/8c949ea5f36f422594b306a2300315da?tpId=37
+//#include <iostream>
+//using namespace std;
+//
+//int main() {
+//    string str;
+//    getline(cin, str);
+//    size_t pos = str.rfind(' ');
+//    if (pos != string::npos) {
+//        cout << str.size() - pos - 1 << endl;
+//    }
+//    else {
+//        cout << str.size() << endl;
+//    }
+//}
 
+//HJ59 找出字符串中第一个只出现一次的字符
+// https://www.nowcoder.com/practice/e896d0f82f1246a3aa7b232ce38029d4?tpId=37
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//int main() {
+//    string a;
+//    cin >> a;
+//    int charCount[256] = { 0 };
+//    for (auto e : a)
+//    {
+//        ++charCount[e];
+//    }
+//    int s = -1;
+//    for (auto e : a)
+//    {
+//        if (charCount[e] == 1)
+//        {
+//            cout << e;
+//            s = 1;
+//            break;
+//        }
+//    }
+//    if (s == -1)
+//        cout << s;
+//}
+// 
+// 415. 字符串相加
+//https://leetcode.cn/problems/add-strings/
+// class Solution {
+//public:
+//    string addStrings(string num1, string num2) {
+//        int end1 = num1.size() - 1;
+//        int end2 = num2.size() - 1;
+//        int next = 0;
+//        string str;
+//        str.reserve(num1.size() > num2.size() ? num1.size() + 1 : num2.size() + 1);
+//        while (end1 >= 0 || end2 >= 0) {
+//            int val1 = end1 >= 0 ? num1[end1] - '0' : 0;
+//            int val2 = end2 >= 0 ? num2[end2] - '0' : 0;
+//            int ret = val1 + val2 + next;
+//            next = ret / 10;
+//            ret = ret % 10;
+//            str += '0' + ret;
+//            --end1, --end2;
+//        }
+//        if (next == 1)
+//            str += '1';
+//        reverse(str.begin(), str.end());
+//        return str;
+//    }
+//};
+// 
+// 
 //43. 字符串相乘
 //https://leetcode.cn/problems/multiply-strings/description/
 //class Solution {
