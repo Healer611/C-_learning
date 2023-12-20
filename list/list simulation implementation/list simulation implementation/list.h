@@ -17,6 +17,8 @@ namespace hbr
 		{}
 	};
 
+	//template<class T>
+
 	template<class T>
 	class list
 	{
