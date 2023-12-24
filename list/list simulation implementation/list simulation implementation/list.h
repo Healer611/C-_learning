@@ -1,6 +1,6 @@
 #pragma once
-#include<assert.h>
-
+#include <assert.h>
+#include <iostream>
 namespace hbr
 {
 	template<class T>
@@ -47,7 +47,7 @@ namespace hbr
 		self operator++(int)
 		{
 			self tmp(*this);
-			_node = _node_._prev;
+			_node = _node->_prev;
 			return tmp;
 		}
 
@@ -57,14 +57,14 @@ namespace hbr
 			return *this;
 		}
 
-		self operaror--(int)
+		self operator--(int)
 		{
 			self tmp(*this);
 			_node = _node->_prev;
 			return tmp;
 		}
 
-		bool operator==(const _self& s)
+		bool operator!=(const self& s)
 		{
 			return  _node != s._node;
 		}
@@ -81,7 +81,7 @@ namespace hbr
 		typedef list_node<T> node;
 	public:
 		typedef _list_iterator<T, T&, T*> iterator;
-		typedef _list_iterator<T, const T&, constT*>const_iterator;
+		typedef _list_iterator<T, const T&, const T*>const_iterator;
 		
 		iterator begin()
 		{
@@ -90,7 +90,7 @@ namespace hbr
 		
 		const_iterator begin() const
 		{
-			return const_iterator(_head->next);
+			return const_iterator(_head->_next);
 		}
 
 		iterator end()
@@ -98,7 +98,7 @@ namespace hbr
 			return iterator(_head);
 		}
 
-		const_iterator() const
+		const_iterator end() const
 		{
 			return const_iterator(_head);
 		}
@@ -226,5 +226,57 @@ namespace hbr
 		node* _head;
 	};
 
-	
+	void TestList() {
+		hbr::list<int> l;
+
+		// 测试push_back和遍历
+		for (int i = 0; i < 5; ++i) {
+			l.push_back(i);
+		}
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+
+		// 测试push_front
+		for (int i = 5; i < 10; ++i) {
+			l.push_front(i);
+		}
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+
+		// 测试pop_back
+		l.pop_back();
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+
+		// 测试pop_front
+		l.pop_front();
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+
+		// 测试erase
+		hbr::list<int>::iterator it = l.begin();
+		++it; ++it; // 让迭代器指向第三个元素
+		l.erase(it);
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+
+		// 测试insert
+		it = l.begin();
+		++it; // 让迭代器指向第二个元素
+		l.insert(it, 100);
+		for (hbr::list<int>::iterator it = l.begin(); it != l.end(); ++it) {
+			std::cout << *it << " ";
+		}
+		std::cout << std::endl;
+	}
 }
