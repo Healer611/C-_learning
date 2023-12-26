@@ -2,6 +2,7 @@
 using namespace std;
 #include <stack>
 #include <vector>
+#include <string>
 //155. 最小栈
 //https://leetcode.cn/problems/min-stack/description/
 class MinStack {
@@ -51,5 +52,40 @@ public:
             }
         }
         return popi == popV.size();
+    }
+};
+
+//150. 逆波兰表达式求值
+//https://leetcode.cn/problems/evaluate-reverse-polish-notation/submissions/
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> st;
+        for (auto& str : tokens) {
+            if (str == "+" || str == "-" || str == "*" || str == "/") {
+                int right = st.top();
+                st.pop();
+                int left = st.top();
+                st.pop();
+                switch (str[0]) {
+                case '+':
+                    st.push(left + right);
+                    break;
+                case '-':
+                    st.push(left - right);
+                    break;
+                case '*':
+                    st.push(left * right);
+                    break;
+                case '/':
+                    st.push(left / right);
+                    break;
+                }
+            }
+            else {
+                st.push(stoi(str));
+            }
+        }
+        return st.top();
     }
 };
