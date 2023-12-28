@@ -38,15 +38,14 @@ namespace hbr
 		}
 
 	private:
-		//vector<T> _v;
 		Container _con;
 	};
 
 	void test_stack()
 	{
-		//stack<int, vector<int>> st;
+		stack<int, vector<int>> st;
 		//stack<int, list<int>> st;
-		stack<int> st;
+		//stack<int> st;
 		st.push(1);
 		st.push(2);
 		st.push(3);
