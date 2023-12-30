@@ -89,3 +89,89 @@ public:
         return st.top();
     }
 };
+
+
+//232. 用栈实现队列
+//https://leetcode.cn/problems/implement-queue-using-stacks/
+class MyQueue {
+public:
+    MyQueue() {}
+
+    void push_to_pop() {
+        if (stpop.empty()) {
+            while (!stpush.empty()) {
+                stpop.push(stpush.top());
+                stpush.pop();
+            }
+        }
+    }
+
+    void push(int x) { stpush.push(x); }
+
+    int pop() {
+        push_to_pop();
+        int x = stpop.top();
+        stpop.pop();
+        return x;
+    }
+
+    int peek() {
+        push_to_pop();
+        return stpop.top();
+    }
+
+    bool empty() { return stpush.empty() && stpop.empty(); }
+
+private:
+    stack<int> stpush;
+    stack<int> stpop;
+};
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue* obj = new MyQueue();
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * int param_3 = obj->peek();
+ * bool param_4 = obj->empty();
+ */
+
+
+//225. 用队列实现栈
+//https://leetcode.cn/problems/implement-stack-using-queues/
+
+
+//215. 数组中的第K个最大元素
+//https://leetcode.cn/problems/kth-largest-element-in-an-array/description/
+class Solution {
+public:
+    void AdjustDown(vector<int>& a, int size, int parent) {
+        int child = parent * 2 + 1;
+        while (child < size) {
+            if (child + 1 < size && a[child + 1] > a[child]) {
+                child++;
+            }
+            if (a[child] > a[parent]) {
+                swap(a[child], a[parent]);
+                parent = child;
+                child = parent * 2 + 1;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        int size = nums.size();
+        for (int i = (size - 1) / 2; i >= 0; i--) {
+            AdjustDown(nums, size, i);
+        }
+
+        for (int i = 0; i < k - 1; i++) {
+            swap(nums[0], nums[size - 1]);
+            size--;
+            AdjustDown(nums, size, 0);
+        }
+        return nums[0];
+    }
+};
