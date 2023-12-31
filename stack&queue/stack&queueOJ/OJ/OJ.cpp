@@ -3,6 +3,8 @@ using namespace std;
 #include <stack>
 #include <vector>
 #include <string>
+#include <algorithm>
+#include <queue>
 //155. 最小栈
 //https://leetcode.cn/problems/min-stack/description/
 class MinStack {
@@ -143,35 +145,36 @@ private:
 
 //215. 数组中的第K个最大元素
 //https://leetcode.cn/problems/kth-largest-element-in-an-array/description/
+
 class Solution {
 public:
-    void AdjustDown(vector<int>& a, int size, int parent) {
-        int child = parent * 2 + 1;
-        while (child < size) {
-            if (child + 1 < size && a[child + 1] > a[child]) {
-                child++;
-            }
-            if (a[child] > a[parent]) {
-                swap(a[child], a[parent]);
-                parent = child;
-                child = parent * 2 + 1;
-            }
-            else {
-                break;
-            }
-        }
-    }
     int findKthLargest(vector<int>& nums, int k) {
-        int size = nums.size();
-        for (int i = (size - 1) / 2; i >= 0; i--) {
-            AdjustDown(nums, size, i);
-        }
+        sort(nums.begin(), nums.end());
+        return nums[nums.size() - k];
+    }
+};
 
-        for (int i = 0; i < k - 1; i++) {
-            swap(nums[0], nums[size - 1]);
-            size--;
-            AdjustDown(nums, size, 0);
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int> pq(nums.begin(), nums.end());
+        while (--k) {
+            pq.pop();
         }
-        return nums[0];
+        return pq.top();
+    }
+};
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue<int, vector<int>, greater<int>> pq(nums.begin(), nums.begin() + k);
+        for (size_t i = k; i < nums.size(); i++) {
+            if (nums[i] > pq.top()) {
+                pq.pop();
+                pq.push(nums[i]);
+            }
+        }
+        return pq.top();
     }
 };
